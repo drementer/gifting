@@ -1,18 +1,4 @@
 /**
- * Birçok dosya ve yapıyı harmanlayıp birde kendi
- * deneyimlerimi ekleyerek oluşturduğum reset dosyası
- *
- * https://github.com/jgthms/minireset.css
- * https://github.com/necolas/normalize.css
- * https://github.com/csstools/sanitize.css
- * https://github.com/sindresorhus/modern-normalize
- * https://github.com/jensimmons/cssremedy
- * https://github.com/adamgruber/opinionate.css
- * https://github.com/twbs/bootstrap/blob/main/scss/_reboot.scss
- * https://codepen.io/chriscoyier/pen/JpLzjd?editors=1010
- */
-
-/**
  * 1. Add border box sizing in all browsers (opinionated).
  * 2. Backgrounds do not repeat by default (opinionated).
  */
@@ -80,13 +66,6 @@ html {
 }
 
 /**
- * Remove the border on iframes in all browsers (opinionated).
- */
-:where(iframe) {
-  border-style: none;
-}
-
-/**
  * Change the fill color to match the text color in all browsers (opinionated).
  */
 :where(svg:not([fill])) {
@@ -105,22 +84,6 @@ html {
 }
 
 /**
- * Change the cursor on disabled, not-editable, or otherwise
- * inoperable elements in all browsers (opinionated).
- */
-[disabled] {
-  cursor: not-allowed;
-}
-
-/**
- * Change the display on visually hidden accessible elements
- * in all browsers (opinionated).
- */
-[hidden] {
-  display: none !important;
-}
-
-/**
  * Prevent the display of empty elements in all browsers (opinionated).
  */
 :where(p, span) {
@@ -130,17 +93,9 @@ html {
 }
 
 /**
- * Prevent the selection of icons in all browsers (opinionated).
- */
-ion-icon {
-  user-select: none;
-  pointer-events: none;
-}
-
-/**
  * Prevent the scaling of media items in all browsers (opinionated).
  */
-img {
+:where(img) {
   height: auto;
   max-width: 100%;
 }
@@ -159,22 +114,9 @@ img {
 }
 
 /**
- * Correct the inability to style clickable types in iOS and Safari.
- */
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-}
-
-/**
  * Remove the inner border and padding in Firefox.
  */
-button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+button::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -182,9 +124,22 @@ button::-moz-focus-inner,
 /**
  * Restore the focus styles unset by the previous rule.
  */
-button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+button:-moz-focusring {
   outline: 1px dotted ButtonText;
+}
+
+/**
+ * Change the cursor on disabled, not-editable, or otherwise
+ * inoperable elements in all browsers (opinionated).
+ */
+[disabled] {
+  cursor: not-allowed;
+}
+
+/**
+ * Change the display on visually hidden accessible elements
+ * in all browsers (opinionated).
+ */
+[hidden] {
+  display: none !important;
 }

@@ -1,18 +1,86 @@
 .button {
-  @include padding(0.5rem 1rem);
-  @include margin(0.5rem);
-  @include font-size(1.2rem);
-  @extend %button;
+  $primary-color: hsl(24, 21%, 69%);
+  $primary-color--10: rgba($primary-color, 70%);
+
+  position: relative;
 
   display: inline-flex;
   justify-content: center;
-  position: relative;
-  vertical-align: middle;
-  border: 1px solid transparent;
+
+  padding: 0.5rem 1.5rem;
+
   color: $white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  text-transform: capitalize;
+  vertical-align: middle;
+
+  border: 1px solid transparent;
+  border-radius: 5px;
   background-color: $primary-color;
+  outline: none;
+  cursor: pointer;
 
   &:hover {
-    background-color: $primary-color--600;
+    background-color: rgba($primary-color, 0.8);
+  }
+
+  &-2 {
+    @extend .button;
+
+    color: $primary-color;
+    border-color: currentColor;
+    background-color: transparent;
+
+    &:hover {
+      color: $white;
+      border-color: transparent;
+      background-color: $primary-color--10;
+    }
+  }
+
+  &-ghost {
+    @extend .button;
+
+    color: $primary-color--10;
+    background-color: transparent;
+
+    &:hover {
+      border-color: currentColor;
+    }
+  }
+
+  &-link {
+    @extend .button;
+
+    margin: 0;
+    padding: 0;
+
+    color: $primary-color;
+    background-color: transparent;
+
+    &::after {
+      opacity: 0;
+
+      content: '';
+
+      position: absolute;
+      bottom: 4px;
+
+      display: block;
+
+      width: 100%;
+      height: 1px;
+
+      background-color: currentColor;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@
   "name": "gifting",
   "version": "0.0.1",
   "homepage": "http://gifting.com",
-  "description": "Proje description",
+  "description": "gifting",
   "author": "drementer <klncarslanburak@gmail.com> (https://github.com/drementer)",
   "scripts": {
     "parcel-dev": "parcel src/*.html --open --no-cache --no-source-maps",
