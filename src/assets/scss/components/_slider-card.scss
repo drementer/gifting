@@ -1,0 +1,15 @@
+.slider-card {
+  position: relative;
+
+  width: 10rem;
+  min-width: 10rem;
+  height: fit-content;
+
+  transition: all 200ms ease-out;
+
+  &.--winner {
+    z-index: 1;
+
+    transform: scale(3);
+  }
+}
