@@ -1,20 +1,23 @@
 {
-  "name": "project-name",
+  "name": "gifting",
   "version": "0.0.1",
-  "homepage": "http://project-name.com",
+  "homepage": "http://gifting.com",
   "description": "Proje description",
-  "author": "project-owner <project-owner@gmail.com> (https://github.com/project-owner)",
-  "main": "index.js",
+  "author": "drementer <klncarslanburak@gmail.com> (https://github.com/drementer)",
   "scripts": {
-    "": ""
+    "parcel-dev": "parcel src/*.html --open --no-cache --no-source-maps",
+    "parcel-build": "parcel build src/*.html --public-url ./ --no-source-maps"
   },
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/project-owner/project-name.git"
+    "url": "git+https://github.com/drementer/gifting.git"
   },
   "bugs": {
-    "url": "https://github.com/project-owner/project-name/issues"
+    "url": "https://github.com/drementer/gifting/issues"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.8.2"
+  }
 }

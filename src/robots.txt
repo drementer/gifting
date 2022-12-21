@@ -1,5 +1,0 @@
-User-Agent: *
-Allow: /
-
-# Disallow:
-# Sitemap: http://project-name.com/sitemap.xml

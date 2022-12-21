@@ -1,0 +1,97 @@
+@use './variables' as *;
+
+/// Converts px to em
+///
+/// @group sayi
+///
+/// @param {number} $px - Px value to translate
+/// @require {variable} $root-font-size - Root font size
+/// @return {number} - Em value
+///
+/// @example
+///   @debug px2em(16);
+///    //-> 1em
+///
+/// @example
+///   @debug px2em(16px);
+///    //-> 1em
+///
+@function px2em($px, $root-font-size: 16px) {
+  @if unitless($px) {
+    $px: $px * 1px;
+  }
+  @if comparable($px, 1em) {
+    @return $px;
+  }
+  @return calc($px / $root-font-size) * 1em;
+}
+
+/// Converts rem to px
+///
+/// @group sayi
+///
+/// @param {number} $px - Px value to translate
+/// @require {variable} $root-font-size - Root font size
+/// @return {number} - Rem value
+///
+/// @example
+///   @debug px2em(16);
+///    //-> 1rem
+///
+/// @example
+///   @debug px2em(16px);
+///    //-> 1rem
+///
+@function px2rem($px, $root-font-size: 16px) {
+  @if unitless($px) {
+    $px: $px * 1px;
+  }
+  @if comparable($px, 1rem) {
+    @return $px;
+  }
+  @return calc($px / $root-font-size) * 1rem;
+}
+
+/// Lighten a color by mixing it with white.
+///
+/// @author Sindre Sorhus
+///
+/// @parameter {Color} $color - Color to lighten
+/// @parameter {Number} $percentage - Amount of white color to mix in
+/// @return {Color}
+///
+/// @example
+///   a {
+///   	color: tint(pink, 10%);
+///   }
+///
+/// @example css - Output CSS
+///   a {
+///   	color: #ffc6d0;
+///   }
+///
+@function tint($color, $percentage) {
+  @return mix(#fff, $color, $percentage);
+}
+
+/// Darken a color by mixing it with black.
+///
+/// @author Sindre Sorhus
+///
+/// @parameter {Color} $color - Color to darken
+/// @parameter {Number} $percentage - Amount of black color to mix in
+/// @return {Color}
+///
+/// @example
+///   a {
+///   	color: shade(pink, 10%);
+///   }
+///
+/// @example css - Output CSS
+///   a {
+///   	color: #e6adb7;
+///   }
+///
+@function shade($color, $percentage) {
+  @return mix(#000, $color, $percentage);
+}
