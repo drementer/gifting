@@ -1,0 +1,61 @@
+.slider {
+  overflow-x: hidden;
+  overflow-y: visible;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  width: 100%;
+  height: 100%;
+
+  margin-top: auto;
+
+  &__filter {
+    $background: #f7e4df;
+    z-index: 1;
+    pointer-events: none;
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 14.2rem;
+
+    background: linear-gradient(
+      270deg,
+      rgba($white, 0) 0%,
+      rgba($white, 0) 70%,
+      rgba($background, 1) 90%,
+      rgba($background, 1) 100%
+    );
+  }
+
+  &__wrapper {
+    $card-width: 10rem;
+    $half-of-card: $card-width / 2;
+    $start-position: calc(50vw - $half-of-card);
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: fit-content;
+
+    position: relative;
+
+    transform: translateX($start-position);
+
+    &.--sliding {
+      transition: transform 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
