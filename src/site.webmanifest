@@ -1,0 +1,14 @@
+{
+	"name": "project-name",
+	"short_name": "project-short-name",
+	"icons": [
+		{
+			"src": "icon.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		}
+	],
+	"start_url": "/?utm_source=homescreen",
+	"background_color": "#fff",
+	"theme_color": "#000"
+}
