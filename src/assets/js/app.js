@@ -61,12 +61,19 @@ let scrolledCard = perScrollCard;
 let transform = '';
 let scrollPosition = `translateX(calc(${scrollStart} - ${scrollWidth}rem))`;
 
+/**
+ * Upadte Scroll Position
+ */
 const updateScrollPosition = () => {
   scrollPosition = `translateX(calc(${scrollStart} - ${scrollWidth}rem))`;
   transform = `${scrollPosition}`;
   wrapper.style.transform = transform;
 };
 
+/**
+ * Create Card
+ * @param {integer} index - Index of picture
+ */
 const createCard = (index) => {
   let card = document.createElement('div');
 
@@ -77,6 +84,9 @@ const createCard = (index) => {
   return card;
 };
 
+/**
+ * Incejt Card
+ */
 const injectCard = () => {
   let cardsLenght = perScrollCard + 1;
   let index = 1;
@@ -90,6 +100,9 @@ const injectCard = () => {
   }
 };
 
+/**
+ * Start Animation
+ */
 const startAnimation = () => {
   startButton.innerHTML = 'Tekrar Dene';
   startButton.setAttribute('disabled', '');
@@ -107,6 +120,10 @@ const startAnimation = () => {
   scrollWidth += perScroll;
 };
 
+/**
+ * Finish Animation
+ * @param {object} e - Event of 'transitionend' listener
+ */
 const finishAnimation = (e) => {
   let target = e.srcElement;
   let status = target != wrapper;
@@ -121,6 +138,9 @@ const finishAnimation = (e) => {
   scrolledCard += perScrollCard;
 };
 
+/**
+ * Init
+ */
 const init = () => {
   startButton.addEventListener('click', startAnimation);
   wrapper.addEventListener('transitionend', finishAnimation);
