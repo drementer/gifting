@@ -58,57 +58,73 @@ const scrollStart = `(50vw - ${halfCardWidth})`;
 
 let scrollWidth = perScroll;
 let scrolledCard = perScrollCard;
+let transform = '';
+let scrollPosition = `translateX(calc(${scrollStart} - ${scrollWidth}rem))`;
 
-const createCard = (index) => {
-  let content = `
-	<div class="slider__card slider-card" card>
-		<img src="./assets/img/cards/${index}.png" alt="" class="slider-card__image">
-	</div>
-	`;
-
-  return content;
+const updateScrollPosition = () => {
+  scrollPosition = `translateX(calc(${scrollStart} - ${scrollWidth}rem))`;
+  transform = `${scrollPosition}`;
+  wrapper.style.transform = transform;
 };
 
-const randomNumber = () => {
-  return Math.floor(Math.random() * 6) + 1;
+const createCard = (index) => {
+  let card = document.createElement('div');
+
+  card.classList.add('slider__card', 'slider-card');
+  card.setAttribute('card', '');
+  card.innerHTML = `<img src="assets/img/cards/${index}.png" alt="" class="slider-card__image">`;
+
+  return card;
 };
 
 const injectCard = () => {
-  let cards = '';
-  let cardsLenght = perScrollCard;
+  let cardsLenght = perScrollCard + 1;
   let index = 1;
 
   while (index <= cardsLenght) {
-    cards += createCard(randomNumber());
+    let randomNumber = Math.floor(Math.random() * 6) + 1;
+    let card = createCard(randomNumber);
+
+    wrapper.insertAdjacentElement('beforeend', card);
     index++;
   }
-
-  wrapper.innerHTML += cards;
 };
 
-startButton.addEventListener('click', () => {
-  let scrollPosition = `calc(${scrollStart} - ${scrollWidth}rem)`;
-  let lastWinner = select('.--winner');
+const startAnimation = () => {
+  startButton.innerHTML = 'Tekrar Dene';
+  startButton.setAttribute('disabled', '');
 
+  let lastWinner = select('.--winner');
   if (lastWinner) {
     removeClass(lastWinner, winnerClass);
   }
 
   injectCard();
-  startButton.innerHTML = 'Tekrar Dene';
+
+  updateScrollPosition();
   addClass(wrapper, slidingClass);
 
-  wrapper.style.transform = `translateX(${scrollPosition})`;
   scrollWidth += perScroll;
-});
+};
 
-wrapper.addEventListener('transitionend', () => {
+const finishAnimation = (e) => {
+  let target = e.srcElement;
+  let status = target != wrapper;
+  if (status) return;
+
   let cards = selects('[card]');
   let winner = cards[scrolledCard];
 
-  removeClass(wrapper, slidingClass);
   addClass(winner, winnerClass);
+  removeClass(wrapper, slidingClass);
+  startButton.removeAttribute('disabled');
   scrolledCard += perScrollCard;
-});
+};
 
-window.onload = injectCard();
+const init = () => {
+  startButton.addEventListener('click', startAnimation);
+  wrapper.addEventListener('transitionend', finishAnimation);
+  injectCard();
+};
+
+window.onload = init();
