@@ -134,6 +134,7 @@ button:-moz-focusring {
  */
 [disabled] {
   cursor: not-allowed;
+	pointer-events: none;
 }
 
 /**
