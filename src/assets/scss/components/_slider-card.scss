@@ -7,6 +7,8 @@
 
   transition: all 200ms ease-out;
 
+  will-change: transform;
+
   &.--last-winner {
     z-index: 1;
   }
