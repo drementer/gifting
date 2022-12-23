@@ -38,6 +38,12 @@
     );
   }
 
+  &__container {
+    &.--skew {
+      animation: skew 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+  }
+
   &__wrapper {
     $card-width: 10rem;
     $half-of-card: $card-width / 2;
@@ -56,24 +62,6 @@
     &.--sliding {
       transition: transform 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       animation: blur 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-      @keyframes blur {
-        0% {
-          filter: blur(0px);
-        }
-        30% {
-          filter: blur(0px);
-        }
-        50% {
-          filter: blur(2px);
-        }
-        70% {
-          filter: blur(0px);
-        }
-        100% {
-          filter: blur(0px);
-        }
-      }
     }
   }
 
@@ -81,5 +69,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(0px);
+  }
+  30% {
+    filter: blur(0px);
+  }
+  50% {
+    filter: blur(2px);
+  }
+  70% {
+    filter: blur(0px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+
+@keyframes skew {
+  0% {
+    transform: skew(0) scale(1);
+  }
+  30% {
+    transform: skew(0) scale(0.9);
+  }
+  50% {
+    transform: skew(-7deg) scale(0.85);
+  }
+  100% {
+    transform: skew(0) scale(1);
   }
 }
