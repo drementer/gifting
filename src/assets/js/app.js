@@ -49,6 +49,7 @@ const startButton = select('[start-button]');
 
 const slidingClass = '--sliding';
 const winnerClass = '--winner';
+const lastWinner = '--last-winner';
 
 const cardWidth = 10;
 const perScrollCard = 30;
@@ -133,6 +134,7 @@ const finishAnimation = (e) => {
   let winner = cards[scrolledCard];
 
   addClass(winner, winnerClass);
+  addClass(winner, lastWinner);
   removeClass(wrapper, slidingClass);
   startButton.removeAttribute('disabled');
   scrolledCard += perScrollCard;
