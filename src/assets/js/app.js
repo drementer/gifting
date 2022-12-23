@@ -44,11 +44,13 @@ const selects = (selector, scope = document) => {
   return scope.querySelectorAll(selector);
 };
 
+const container = select('[container]');
 const wrapper = select('[wrapper]');
 const startButton = select('[start-button]');
 
 const slidingClass = '--sliding';
 const winnerClass = '--winner';
+const skewClass = '--skew';
 const lastWinner = '--last-winner';
 
 const cardWidth = 10;
@@ -116,6 +118,7 @@ const startAnimation = () => {
   injectCard();
 
   updateScrollPosition();
+  addClass(container, skewClass);
   addClass(wrapper, slidingClass);
 
   scrollWidth += perScroll;
@@ -135,6 +138,7 @@ const finishAnimation = (e) => {
 
   addClass(winner, winnerClass);
   addClass(winner, lastWinner);
+  removeClass(container, skewClass);
   removeClass(wrapper, slidingClass);
   startButton.removeAttribute('disabled');
   scrolledCard += perScrollCard;
