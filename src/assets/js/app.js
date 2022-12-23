@@ -7,39 +7,26 @@ const log = (log) => {
 };
 
 /**
- * Fast add class from element.
- * @param {object} element - Manipulation element
+ * Fast add class from element(s).
+ * @param {object} element - Manipulation element(s)
  * @param {string} className - Class name
  */
 const addClass = (element, className) => {
   element.classList.add(className);
 };
-
-/**
- * Fast remove class from element.
- * @param {object} element - Manipulation element
- * @param {string} className - Class name
- */
 const removeClass = (element, className) => {
   element.classList.remove(className);
 };
 
 /**
- * Fast select item.
+ * Fast select item(s).
  * @param {string} selector - Css selector
- * @param {object} [scope = document] - The parent of the item to be selected
- * @return {object} Selected element
+ * @param {object} [scope = document] - The parent of the item(s) to be selected
+ * @return {object} Selected element(s)
  */
 const select = (selector, scope = document) => {
   return scope.querySelector(selector);
 };
-
-/**
- * Fast select items.
- * @param {string} selector - Css selector
- * @param {object} [scope = document] - The parent of the items to be selected
- * @returns {object} Selected elements
- */
 const selects = (selector, scope = document) => {
   return scope.querySelectorAll(selector);
 };
