@@ -2,6 +2,10 @@
   /*   overflow-x: hidden;
   overflow-y: visible; */
 
+  $cubic-bezier: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  $animation: $cubic-bezier;
+	$scrollTime: 4s;
+
   position: relative;
 
   display: flex;
@@ -42,7 +46,7 @@
     will-change: transform;
 
     &.--skew {
-      animation: skew 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      animation: skew $scrollTime $animation;
     }
   }
 
@@ -64,8 +68,8 @@
     will-change: transform;
 
     &.--sliding {
-      transition: transform 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      animation: blur 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: transform $scrollTime $animation;
+      animation: blur $scrollTime $animation;
     }
   }
 
