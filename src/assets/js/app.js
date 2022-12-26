@@ -7,39 +7,26 @@ const log = (log) => {
 };
 
 /**
- * Fast add class from element.
- * @param {object} element - Manipulation element
+ * Fast add class from element(s).
+ * @param {object} element - Manipulation element(s)
  * @param {string} className - Class name
  */
 const addClass = (element, className) => {
   element.classList.add(className);
 };
-
-/**
- * Fast remove class from element.
- * @param {object} element - Manipulation element
- * @param {string} className - Class name
- */
 const removeClass = (element, className) => {
   element.classList.remove(className);
 };
 
 /**
- * Fast select item.
+ * Fast select item(s).
  * @param {string} selector - Css selector
- * @param {object} [scope = document] - The parent of the item to be selected
- * @return {object} Selected element
+ * @param {object} [scope = document] - The parent of the item(s) to be selected
+ * @return {object} Selected element(s)
  */
 const select = (selector, scope = document) => {
   return scope.querySelector(selector);
 };
-
-/**
- * Fast select items.
- * @param {string} selector - Css selector
- * @param {object} [scope = document] - The parent of the items to be selected
- * @returns {object} Selected elements
- */
 const selects = (selector, scope = document) => {
   return scope.querySelectorAll(selector);
 };
@@ -54,23 +41,21 @@ const skewClass = '--skew';
 const lastWinner = '--last-winner';
 
 const cardWidth = 10;
-const perScrollCard = 30;
-const perScroll = cardWidth * perScrollCard;
 const halfCardWidth = `calc(${cardWidth}rem / 2)`;
 const scrollStart = `(50vw - ${halfCardWidth})`;
 
-let scrollWidth = perScroll;
+const perScrollCard = 30;
+const perScroll = cardWidth * perScrollCard;
+
 let scrolledCard = perScrollCard;
-let transform = '';
-let scrollPosition = `translateX(calc(${scrollStart} - ${scrollWidth}rem))`;
+let scrollWidth = perScroll;
 
 /**
  * Upadte Scroll Position
  */
 const updateScrollPosition = () => {
-  scrollPosition = `translateX(calc(${scrollStart} - ${scrollWidth}rem))`;
-  transform = `${scrollPosition}`;
-  wrapper.style.transform = transform;
+  let scrollPosition = `translateX(calc(${scrollStart} - ${scrollWidth}rem))`;
+  wrapper.style.transform = scrollPosition;
 };
 
 /**
@@ -82,7 +67,7 @@ const createCard = (index) => {
 
   card.classList.add('slider__card', 'slider-card');
   card.setAttribute('card', '');
-  card.innerHTML = `<img src="assets/img/cards/${index}.png" alt="" class="slider-card__image">`;
+  card.innerHTML = `<img src="assets/img/cards/${index}.webp" alt="" class="slider-card__image">`;
 
   return card;
 };
@@ -93,8 +78,9 @@ const createCard = (index) => {
 const injectCard = () => {
   let cardsLenght = perScrollCard + 1;
   let index = 1;
+  let maxCard = cardsLenght * 1.5;
 
-  while (index <= cardsLenght) {
+  while (index <= maxCard) {
     let randomNumber = Math.floor(Math.random() * 6) + 1;
     let card = createCard(randomNumber);
 
@@ -115,8 +101,6 @@ const startAnimation = () => {
     removeClass(lastWinner, winnerClass);
   }
 
-  injectCard();
-
   updateScrollPosition();
   addClass(container, skewClass);
   addClass(wrapper, slidingClass);
@@ -126,10 +110,10 @@ const startAnimation = () => {
 
 /**
  * Finish Animation
- * @param {object} e - Event of 'transitionend' listener
+ * @param {object} event - Event of 'transitionend' listener
  */
-const finishAnimation = (e) => {
-  let target = e.srcElement;
+const finishAnimation = (event) => {
+  let target = event.srcElement;
   let status = target != wrapper;
   if (status) return;
 
@@ -142,6 +126,8 @@ const finishAnimation = (e) => {
   removeClass(wrapper, slidingClass);
   startButton.removeAttribute('disabled');
   scrolledCard += perScrollCard;
+
+  injectCard();
 };
 
 /**
