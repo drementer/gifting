@@ -67,7 +67,7 @@ const createCard = (index) => {
 
   card.classList.add('slider__card', 'slider-card');
   card.setAttribute('card', '');
-  card.innerHTML = `<img src="./assets/img/cards/${index}.webp" alt="" class="slider-card__image">`;
+  card.innerHTML = `<img src="assets/img/cards/${index}.webp" alt="" class="slider-card__image">`;
 
   return card;
 };
