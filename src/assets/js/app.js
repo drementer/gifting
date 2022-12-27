@@ -78,7 +78,7 @@ let scrolledCard = perScrollCard;
 let scrollWidth = perScroll;
 
 let isPlayingSong = false;
-let isSongMuted = false;
+let isMuted = false;
 
 /**
  * Upadte Scroll Position
@@ -141,7 +141,7 @@ const soundEffect = () => {
  * Spin sound effect
  */
 const song = () => {
-  if (isPlayingSong || isSongMuted) return;
+  if (isPlayingSong || isMuted) return;
   isPlayingSong = true;
 
   let song = document.createElement('audio');
