@@ -40,6 +40,33 @@ const winnerClass = '--winner';
 const skewClass = '--skew';
 const lastWinner = '--last-winner';
 
+const cards = [
+  {
+    url: 'assets/img/cards/1.webp',
+    alt: '150tl Watsons hediye çeki',
+  },
+  {
+    url: 'assets/img/cards/2.webp',
+    alt: 'Kafa izni',
+  },
+  {
+    url: 'assets/img/cards/3.webp',
+    alt: '120tl Migros hediye çeki',
+  },
+  {
+    url: 'assets/img/cards/4.webp',
+    alt: '100tl Starbuck hediye kartı',
+  },
+  {
+    url: 'assets/img/cards/5.webp',
+    alt: '70tl Setcard bakiyesi',
+  },
+  {
+    url: 'assets/img/cards/6.webp',
+    alt: '50tl Setcard bakiyesi',
+  },
+];
+
 const cardWidth = 10;
 const halfCardWidth = `calc(${cardWidth}rem / 2)`;
 const scrollStart = `(50vw - ${halfCardWidth})`;
@@ -49,6 +76,9 @@ const perScroll = cardWidth * perScrollCard;
 
 let scrolledCard = perScrollCard;
 let scrollWidth = perScroll;
+
+let isPlayingSong = false;
+let isMuted = false;
 
 /**
  * Upadte Scroll Position
@@ -60,16 +90,20 @@ const updateScrollPosition = () => {
 
 /**
  * Create Card
- * @param {integer} index - Index of picture
+ * @param {integer} index - Index of card.
+ * @returns {object} - Created DOM element.
  */
 const createCard = (index) => {
-  let card = document.createElement('div');
+  let card = cards[index - 1];
+  let cardUrl = card.url;
+  let cardAlt = card.alt;
+  let element = document.createElement('div');
 
-  card.classList.add('slider__card', 'slider-card');
-  card.setAttribute('card', '');
-  card.innerHTML = `<img src="assets/img/cards/${index}.webp" alt="" class="slider-card__image">`;
+  element.classList.add('slider__card', 'slider-card');
+  element.setAttribute('card', '');
+  element.innerHTML = `<img src="${cardUrl}" alt="${cardAlt}" class="slider-card__image">`;
 
-  return card;
+  return element;
 };
 
 /**
@@ -90,6 +124,40 @@ const injectCard = () => {
 };
 
 /**
+ * Spin sound effect
+ */
+const soundEffect = () => {
+  let effect = document.createElement('audio');
+  effect.src = 'assets/sound/effect.mp3';
+
+  effect.addEventListener('ended', () => {
+    document.removeChild(effect);
+  });
+
+  setTimeout(() => effect.play(), 1500);
+};
+
+/**
+ * Spin sound effect
+ */
+const song = () => {
+  if (isPlayingSong || isMuted) return;
+  isPlayingSong = true;
+
+  let song = document.createElement('audio');
+  song.src = 'assets/sound/song.mp3';
+
+  setTimeout(() => {
+    song.play();
+  }, 3000);
+
+  song.addEventListener('ended', () => {
+    isPlayingSong = false;
+    document.removeChild(song);
+  });
+};
+
+/**
  * Start Animation
  */
 const startAnimation = () => {
@@ -101,6 +169,8 @@ const startAnimation = () => {
     removeClass(lastWinner, winnerClass);
   }
 
+  song();
+  soundEffect();
   updateScrollPosition();
   addClass(container, skewClass);
   addClass(wrapper, slidingClass);

@@ -1,8 +1,8 @@
 {
   "name": "gifting",
   "version": "0.0.1",
-  "homepage": "http://gifting.com",
-  "description": "gifting",
+  "homepage": "https://gifting.netlify.app/",
+  "description": "Şirket içi doğum günleri için hediye kartı çekiliş uygulaması.",
   "author": "drementer <klncarslanburak@gmail.com> (https://github.com/drementer)",
   "scripts": {
     "parcel-dev": "parcel src/*.html --open --no-cache --no-source-maps",
