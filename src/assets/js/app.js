@@ -50,6 +50,9 @@ const perScroll = cardWidth * perScrollCard;
 let scrolledCard = perScrollCard;
 let scrollWidth = perScroll;
 
+let isPlayingSong = false;
+let isSongMuted = false;
+
 /**
  * Upadte Scroll Position
  */
@@ -90,6 +93,40 @@ const injectCard = () => {
 };
 
 /**
+ * Spin sound effect
+ */
+const soundEffect = () => {
+  let effect = document.createElement('audio');
+  effect.src = 'assets/sound/effect.mp3';
+
+  effect.addEventListener('ended', () => {
+    document.removeChild(effect);
+  });
+
+  setTimeout(() => effect.play(), 1500);
+};
+
+/**
+ * Spin sound effect
+ */
+const song = () => {
+  if (isPlayingSong || isSongMuted) return;
+  isPlayingSong = true;
+
+  let song = document.createElement('audio');
+  song.src = 'assets/sound/song.mp3';
+
+  setTimeout(() => {
+    song.play();
+  }, 3000);
+
+  song.addEventListener('ended', () => {
+    isPlayingSong = false;
+    document.removeChild(song);
+  });
+};
+
+/**
  * Start Animation
  */
 const startAnimation = () => {
@@ -101,6 +138,8 @@ const startAnimation = () => {
     removeClass(lastWinner, winnerClass);
   }
 
+  song();
+  soundEffect();
   updateScrollPosition();
   addClass(container, skewClass);
   addClass(wrapper, slidingClass);
